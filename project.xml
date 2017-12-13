@@ -1,0 +1,93 @@
+<project type="bio">
+  <property name="target.model" value="genomic"/>
+  <property name="source.location" location="../bio/sources/"/>
+  <property name="common.os.prefix" value="common"/>
+  <property name="intermine.properties.file" value="candidamine.properties"/>
+  <property name="default.intermine.properties.file" location="../default.intermine.integrate.properties"/>
+  <sources>
+
+
+    	<source name="so" type="so">
+      		<property name="src.data.file" location="../../bio/sources/so/so.obo" />
+    	</source>
+
+    	<source name="uniprot-candida" type="uniprot">
+     		<property name="uniprot.organisms" value="237561 5476"/> 
+      		<property name="creatego" value="true"/>
+      		<property name="src.data.dir" location="/home/candidamine/candida/uniprot/"/>
+	</source>
+
+    	<source name="candida-albicans-gff" type="candida-gff">
+      		<property name="gff3.taxonId" value="5476"/>
+      		<property name="gff3.seqDataSourceName" value="CGD"/>
+      		<property name="gff3.dataSourceName" value="CGD"/>
+      		<property name="gff3.seqClsName" value="Chromosome"/>
+      		<property name="gff3.dataSetTitle" value="Candida Genome Database"/>
+      		<property name="src.data.dir" location="/home/candidamine/candida/genome/albicans/gff"/>
+    	</source>
+  
+	<source name="candida-albicans-chromosome-fasta" type="fasta" dump="true">
+      		<property name="fasta.className" value="org.intermine.model.bio.Chromosome"/>
+      		<property name="fasta.dataSourceName" value="CGD"/>
+      		<property name="fasta.dataSetTitle" value="Candida Genome Database"/>
+      		<property name="fasta.taxonId" value="5476"/>
+      		<property name="fasta.includes" value="*.fasta"/>
+      		<property name="src.data.dir" location="/home/candidamine/candida/genome/albicans/fasta"/>
+    	</source>
+
+
+	<source name="cgd-ids" type="cgd-identifiers">
+                <property name="src.data.file" location="/home/candidamine/candida/cgd-ids/C_albicans_SC5314_A22_current_chromosomal_feature.tab"/>
+		<property name="src.data.dir" location="/home/candidamine/candida/cgd-ids"/>
+		<property name="taxonId" value="5476"/>
+        </source>
+
+<!--
+    <source name="go" type="go">
+      <property name="src.data.file" location="/home/candidamine/candida/go/go.obo"/>
+    </source>
+
+ <source name="go-annotation" type="go-annotation">
+      <property name="src.data.dir" location="/home/candidamine/candida/go-annotation/"/>
+       <property name="ontologyfile" location="/home/candidamine/candida/go/go.obo"/>
+    </source>
+
+
+-->
+
+	<source name="go" type="go">
+      		<property name="src.data.file" location="/home/candidamine/candida/go/goslim_candida.obo"/>
+    	</source>
+
+    	<source name="go-annotation" type="go-annotation">
+      		<property name="src.data.dir" location="/home/candidamine/candida/go-annotation/"/>
+       		<property name="ontologyfile" location="/home/candidamine/candida/go/goslim_candida.obo"/>
+   	 </source>
+   	<source name="update-publications" type="update-publications">
+      		<property name="src.data.file" location="build/publications.xml"/>
+    	</source>
+
+	<source name="entrez-organism" type="entrez-organism">
+      		<property name="src.data.file" location="build/organisms.xml"/>
+    	</source>
+
+
+
+  </sources>
+
+  <post-processing>
+
+    <post-process name="create-references"/>
+    <post-process name="transfer-sequences" dump="true"/>
+
+    <!-- this runs the postprocessing steps in all sources -->
+    <post-process name="do-sources"/>
+
+    <post-process name="summarise-objectstore"/>
+    <post-process name="create-autocomplete-index"/>
+    <post-process name="create-search-index"/>
+
+  </post-processing>
+
+</project>
+
