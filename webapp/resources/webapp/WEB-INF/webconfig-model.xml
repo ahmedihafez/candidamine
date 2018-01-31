@@ -129,6 +129,29 @@
     </fields>
   </class>
 
+  <class className="org.intermine.model.bio.OrthologueEvidence">
+    <fields>
+      <fieldconfig fieldExpr="evidenceCode.name"/>
+    </fields>
+  </class>
+
+  <class className="org.intermine.model.bio.OrthologueEvidenceCode">
+    <fields>
+      <fieldconfig fieldExpr="abbreviation"/>
+      <fieldconfig fieldExpr="name" />
+    </fields>
+  </class>
+
+
+  <class className="org.intermine.model.bio.Homologue">
+    <fields>
+      <fieldconfig fieldExpr="gene.primaryIdentifier" showInResults="false" showInInlineCollection="false" />
+      <fieldconfig fieldExpr="homologue.primaryIdentifier"/>
+      <fieldconfig fieldExpr="homologue.organism.shortName"/>
+      <fieldconfig fieldExpr="type"/>
+    </fields>
+  </class>
+
   <class className="org.intermine.model.bio.Protein">
     <inlinelist>
       <table path="synonyms.value" showLinksToObjects="true" />
@@ -218,6 +241,14 @@
                      replacesFields=""
                      placement="Proteins"
                      types="Gene,Protein"/>
+
+<reportdisplayer javaClass="org.intermine.bio.web.displayer.HomologueDisplayer"
+    jspName="model/homologueDisplayer.jsp"
+    replacesFields="homologues"
+    placement="Homology"
+    parameters="{'dataSets': ['CGD Orthologs by CGOB']}"
+    types="Gene"/>
+
 
   </reportdisplayers>
 

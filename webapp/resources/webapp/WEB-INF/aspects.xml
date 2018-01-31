@@ -21,4 +21,12 @@
     <tile-name>model/proteins.jsp</tile-name>
     <aspect-source name="UniProt" url="http://www.uniprot.org"/>
   </aspect>
+  <aspect name="Homology">
+    <subtitle></subtitle>
+    <icon-image></icon-image>
+    <large-image></large-image>
+    <intro-text>
+    </intro-text>
+    <tile-name></tile-name>
+  </aspect>
 </aspects>
