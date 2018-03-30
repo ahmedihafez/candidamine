@@ -211,6 +211,56 @@
     </fields>
   </class>
 
+
+<class className="org.intermine.model.bio.PolypeptideDomain">
+	<headerconfig>
+        <titles>
+            <title mainTitles="gene.secondaryIdentifier|primaryIdentifier" />
+        </titles>
+    </headerconfig>
+	<fields>
+		<fieldconfig fieldExpr="primaryIdentifier"/>
+      		<fieldconfig fieldExpr="gene.secondaryIdentifier" label="Gene"/>
+      		<fieldconfig fieldExpr="description"/>
+      		<fieldconfig fieldExpr="proteinDomain.name" label="Protein Domain"/>
+	</fields>
+</class>
+
+
+<class className="org.intermine.model.bio.Phenotype">
+	<headerconfig>
+                <titles>
+                        <title mainTitles="observable.name|qaulifier.name|chemical.name" />
+                </titles>
+        </headerconfig>
+		<fields>
+			<fieldconfig fieldExpr="observable.name"  label="Observation"     />
+			<fieldconfig fieldExpr="qualifier.name"  label="Qualifier"     />
+			<fieldconfig fieldExpr="chemical.name"  label="Chemical"     />
+		</fields>
+</class>
+
+
+ <class className="org.intermine.model.bio.PhenotypeAnnotation">
+
+	<headerconfig>
+        	<titles>
+            		<title mainTitles="phenotype.observable.name|phenotype.qaulifier.name|phenotype.chemical.name" />
+        	</titles>
+    	</headerconfig>
+
+
+                <fields>
+			<fieldconfig fieldExpr="phenotype.name"  label="Phenotype"     />
+                    <!--    <fieldconfig fieldExpr="feature.primaryIdentifier"  label="Feature"     /> -->
+			<fieldconfig fieldExpr="strain.name"  label="Strain"     />
+			<fieldconfig fieldExpr="mutantType.name"  label="Mutant"     />
+			<fieldconfig fieldExpr="condition"  label="Condition"     />
+                </fields>
+</class>
+
+
+
 <!-- exporters -->
   <tableExportConfig id="sequence" className="org.intermine.bio.web.export.SequenceHttpExporter"/>
   <tableExportConfig id="gff3" className="org.intermine.bio.web.export.GFF3HttpExporter"/>
@@ -242,15 +292,24 @@
                      placement="Proteins"
                      types="Gene,Protein"/>
 
-<reportdisplayer javaClass="org.intermine.bio.web.displayer.HomologueDisplayer"
-    jspName="model/homologueDisplayer.jsp"
-    replacesFields="homologues"
-    placement="Homology"
-    parameters="{'dataSets': ['CGD Orthologs by CGOB']}"
-    types="Gene"/>
+	<reportdisplayer javaClass="org.intermine.bio.web.displayer.HomologueDisplayer"
+    		jspName="model/homologueDisplayer.jsp"
+    		replacesFields="homologues"
+    		placement="Homology"
+    		parameters="{'dataSets': ['CGD Orthologs by CGOB']}"
+    		types="Gene"/>
+
+    <reportdisplayer javaClass="org.intermine.bio.web.displayer.JBrowseDisplayer"
+                 jspName="model/jbrowseDisplayer.jsp"
+                 replacesFields=""
+                 placement="Genomics"
+                 types="SequenceFeature"/>
 
 
   </reportdisplayers>
+
+
+
 
 <!-- widgets -->
 <widgets>
