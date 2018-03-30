@@ -14,6 +14,12 @@
       		<property name="src.data.file" location="../../bio/sources/so/so.obo" />
     	</source>
 
+
+        <source name="apo" type="apo">
+                <property name="src.data.file" location="/home/candidamine/candida/apo/apo.obo" />
+        </source>
+
+
     	<source name="uniprot-candida" type="uniprot">
      		<property name="uniprot.organisms" value="5476 5478 5480 5482"/> 
       		<property name="creatego" value="true"/>
@@ -170,13 +176,40 @@
         </source>
 
 
+        <source name="cal-phenotype" type="cgd-phenotype">
+                <property name="src.data.dir" location="/home/candidamine/candida/phenotype/cal"/>
+                <property name="strainPrefix" value="Candida albicans"/>
+                <property name="taxonId" value="5476"/>
+                <property name="dataSource" value="CGD"/>
+                <property name="dataSet" value="Iprscan Protein Domains by CGD"/>
+        </source>
+
+        <source name="gal-phenotype" type="cgd-phenotype">
+                <property name="src.data.dir" location="/home/candidamine/candida/phenotype/gal"/>
+                <property name="strainPrefix" value="Candida glabrata"/>
+                <property name="taxonId" value="5478"/>
+                <property name="dataSource" value="CGD"/>
+                <property name="dataSet" value="Iprscan Protein Domains by CGD"/>
+        </source>
+
+        <source name="par-phenotype" type="cgd-phenotype">
+                <property name="src.data.dir" location="/home/candidamine/candida/phenotype/par"/>
+                <property name="strainPrefix" value="Candida parapsilosis"/>
+                <property name="taxonId" value="5480"/>
+                <property name="dataSource" value="CGD"/>
+                <property name="dataSet" value="Iprscan Protein Domains by CGD"/>
+        </source>
+
+
+
+
 	<source name="go" type="go">
-      		<property name="src.data.file" location="/home/candidamine/candida/go/goslim_candida.obo"/>
+      		<property name="src.data.file" location="/home/candidamine/candida/go/go-basic.obo"/>
     	</source>
 
     	<source name="go-annotation" type="go-annotation">
       		<property name="src.data.dir" location="/home/candidamine/candida/go-annotation/"/>
-       		<property name="ontologyfile" location="/home/candidamine/candida/go/goslim_candida.obo"/>
+       		<property name="ontologyfile" location="/home/candidamine/candida/go/go-basic.obo"/>
    	 </source>
 
 
