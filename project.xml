@@ -20,7 +20,7 @@
         </source>
 
 
-    	<source name="uniprot-candida" type="uniprot">
+    	<!--source name="uniprot-candida" type="uniprot">
      		<property name="uniprot.organisms" value="5476 5478 5480 5482"/> 
       		<property name="creatego" value="true"/>
       		<property name="src.data.dir" location="/home/candidamine/candida/uniprot/"/>
@@ -28,7 +28,7 @@
 	<source name="uniprot-keywords" type="uniprot-keywords">
   		<property name="src.data.dir" location="/home/candidamine/candida/uniprot/"/>
   		<property name="src.data.dir.includes" value="keywlist.xml"/>
-	</source>
+	</source-->
 
 
     	<source name="candida-albicans-gff" type="candida-gff">
@@ -105,6 +105,15 @@
         </source>
 
 
+        <source name="uniprot-candida" type="uniprot">
+                <property name="uniprot.organisms" value="5476 5478 5480 5482"/>
+                <property name="creatego" value="true"/>
+                <property name="src.data.dir" location="/home/candidamine/candida/uniprot/"/>
+        </source>
+        <source name="uniprot-keywords" type="uniprot-keywords">
+                <property name="src.data.dir" location="/home/candidamine/candida/uniprot/"/>
+                <property name="src.data.dir.includes" value="keywlist.xml"/>
+        </source>
 
         <source name="interpro" type="interpro">
                 <property name="src.data.dir" location="/home/candidamine/candida/interpro/pd"/>
@@ -174,6 +183,41 @@
                 <property name="src.data.dir" location="/home/candidamine/candida/variation/"/>
                 <property name="taxonId" value="284593"/>
         </source>
+
+
+
+        <source name="cal-iprScan" type="cgd-iprScan">
+                <property name="src.data.dir" location="/home/candidamine/candida/iprscan"/>
+                <property name="src.data.dir.includes" value="C_albicans_SC5314_iprscan.out"/>
+                <property name="taxonId" value="237561"/>
+                <property name="dataSource" value="CGD"/>
+                <property name="dataSet" value="Iprscan Protein Domains by CGD"/>
+        </source>
+
+        <source name="gla-iprScan" type="cgd-iprScan">
+                <property name="src.data.dir" location="/home/candidamine/candida/iprscan"/>
+                <property name="src.data.dir.includes" value="C_glabrata_CBS138_iprscan.out"/>
+                <property name="taxonId" value="284593"/>
+                <property name="dataSource" value="CGD"/>
+                <property name="dataSet" value="Iprscan Protein Domains by CGD"/>
+        </source>
+
+        <source name="par-iprScan" type="cgd-iprScan">
+                <property name="src.data.dir" location="/home/candidamine/candida/iprscan"/>
+                <property name="src.data.dir.includes" value="C_parapsilosis_CDC317_iprscan.out"/>
+                <property name="taxonId" value="578454"/>
+                <property name="dataSource" value="CGD"/>
+                <property name="dataSet" value="Iprscan Protein Domains by CGD"/>
+        </source>
+
+        <source name="tro-iprScan" type="cgd-iprScan">
+                <property name="src.data.dir" location="/home/candidamine/candida/iprscan"/>
+                <property name="src.data.dir.includes" value="C_tropicalis_MYA-3404_iprscan.out"/>
+                <property name="taxonId" value="294747"/>
+                <property name="dataSource" value="CGD"/>
+                <property name="dataSet" value="Iprscan Protein Domains by CGD"/>
+        </source>
+
 
 
         <source name="cal-phenotype" type="cgd-phenotype">
