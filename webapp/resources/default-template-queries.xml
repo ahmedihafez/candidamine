@@ -21,6 +21,13 @@
     <constraint path="Protein.organism.name" editable="true" description="Organism.name" op="=" value="Plasmodium falciparum 3D7"/>
   </query>
 </template>
+
+<query name="" model="genomic" view="Protein.primaryIdentifier Protein.primaryAccession Protein.organism.name Protein.genes.homologues.homologue.proteins.primaryIdentifier Protein.genes.homologues.homologue.proteins.primaryAccession Protein.genes.homologues.homologue.organism.name" longDescription="Proteins to Homolohous genes proteins" sortOrder="Protein.primaryIdentifier asc" constraintLogic="A and B">
+  <constraint path="Protein.organism.name" code="A" op="=" value="[Candida] glabrata CBS 138"/>
+  <constraint path="Protein.genes.homologues.homologue.organism.name" code="B" op="=" value="Candida albicans SC5314"/>
+</query>
+
+
 </template-queries>
 <tags>
   <tag name="im:public" objectIdentifier="Gene_Protein" type="template">

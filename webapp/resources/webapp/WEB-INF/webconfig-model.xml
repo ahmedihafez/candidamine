@@ -296,7 +296,7 @@
     		jspName="model/homologueDisplayer.jsp"
     		replacesFields="homologues"
     		placement="Homology"
-    		parameters="{'dataSets': ['CGD Orthologs by CGOB']}"
+    		parameters="{'dataSets': ['CGD Orthologs by CGOB','CGD and AspGD Orthologs by InParanoid']}"
     		types="Gene"/>
 
     <reportdisplayer javaClass="org.intermine.bio.web.displayer.JBrowseDisplayer"
@@ -329,6 +329,145 @@
                       constraints="organism.name=[Organism]"
                       views="primaryIdentifier, symbol, secondaryIdentifier, organism.name, chromosome.primaryIdentifier,
                              chromosomeLocation.start, chromosomeLocation.end, chromosomeLocation.strand"/>
+
+      <graphdisplayer id="chromosome_distribution_for_snp"
+                      title="Chromosome Distribution"
+                      description="Actual: number of items in this list found on each chromosome.  Expected: given the total number of items on the chromosome and the number of items in this list, the number of items expected to be found on each chromosome."
+                      graphType="ColumnChart"
+                      rangeLabel="Count"
+                      domainLabel="Chromosome"
+                      filterLabel="Organism"
+                      filters="organism.name=[list]"
+                      startClass="SequenceAlteration"
+                      typeClass="SequenceAlteration"
+                      categoryPath="chromosome.primaryIdentifier"
+                      seriesLabels="Actual,Expected"
+                      seriesPath="ActualExpectedCriteria"
+                      constraints="organism.name=[Organism]"
+                      views="primaryIdentifier, organism.shortName, locations.locatedOn.primaryIdentifier,
+                             locations.start, locations.end, locations.strand"/>
+
+
+     <enrichmentwidgetdisplayer id="go_enrichment_for_gene"
+                                 title="Gene Ontology Enrichment"
+                                 description="GO terms enriched for items in this list."
+                                 label="GO Term"
+                                 filterLabel="Ontology"
+                                 filters="biological_process,cellular_component,molecular_function"
+                                 startClass="Gene"
+                                 startClassDisplay="primaryIdentifier"
+                                 enrich="goAnnotation.ontologyTerm.parents.name"
+                                 enrichIdentifier="goAnnotation.ontologyTerm.parents.identifier"
+                                 constraints="goAnnotation.ontologyTerm.parents.namespace=[Ontology],organism.name=[list],
+                                              primaryIdentifier != null, goAnnotation.qualifier = null,
+                                              goAnnotation.ontologyTerm.parents.identifier != go:0008150,
+                                              goAnnotation.ontologyTerm.parents.identifier != go:0003674,
+                                              goAnnotation.ontologyTerm.parents.identifier != go:0005575"
+                                 typeClass="Gene"
+                                 views="secondaryIdentifier,symbol,primaryIdentifier,organism.name,
+                                       goAnnotation.ontologyTerm.identifier, goAnnotation.ontologyTerm.name,
+                                       goAnnotation.ontologyTerm.parents.identifier,goAnnotation.ontologyTerm.parents.name"
+                                 externalLink="http://amigo.geneontology.org/cgi-bin/amigo/term_details?term="/>
+
+      <enrichmentwidgetdisplayer id="prot_dom_enrichment_for_gene"
+                                 title="Protein Domain Enrichment"
+                                 description="Protein Domains enriched for items in this list."
+                                 label="Protein Domain"
+                                 startClass="Gene"
+                                 startClassDisplay="primaryIdentifier"
+                                 enrich="proteins.proteinDomainRegions.proteinDomain.name"
+                                 enrichIdentifier="proteins.proteinDomainRegions.proteinDomain.primaryIdentifier"
+                                 constraints="organism.name=[list]"
+                                 typeClass="Gene"
+                                 views="secondaryIdentifier,symbol,primaryIdentifier,organism.name,
+                                       proteins.proteinDomainRegions.proteinDomain.primaryIdentifier,
+                                       proteins.proteinDomainRegions.proteinDomain.name"
+                                 externalLink="http://www.ebi.ac.uk/interpro/IEntry?ac="/>
+
+      <enrichmentwidgetdisplayer id="prot_dom_enrichment_for_protein"
+                                 title="Protein Domain Enrichment"
+                                 description="Protein Domains enriched for items in this list."
+                                 label="Protein Domain"
+                                 startClass="Protein"
+                                 startClassDisplay="primaryIdentifier"
+                                 enrich="proteinDomainRegions.proteinDomain.name"
+                                 enrichIdentifier="proteinDomainRegions.proteinDomain.primaryIdentifier"
+                                 constraints="organism.name=[list]"
+                                 typeClass="Protein"
+                                 views="primaryIdentifier,organism.name,proteinDomainRegions.proteinDomain.primaryIdentifier,
+                                       proteinDomainRegions.proteinDomain.name"
+                                 externalLink="http://www.ebi.ac.uk/interpro/IEntry?ac="/>
+
+	<enrichmentwidgetdisplayer id="pprot_dom_enrichment_for_gene"
+                                 title="Predicted Protein Domain Enrichment"
+                                 description="Protein Domains enriched for items in this list."
+                                 label="Protein Domain"
+                                 startClass="Gene"
+                                 startClassDisplay="primaryIdentifier"
+                                 enrich="polypeptideDomains.proteinDomain.name"
+                                 enrichIdentifier="polypeptideDomains.proteinDomain.primaryIdentifier"
+                                 constraints="organism.name=[list]"
+                                 typeClass="Gene"
+                                 views="secondaryIdentifier,symbol,primaryIdentifier,organism.name,
+                                       polypeptideDomains.proteinDomain.primaryIdentifier,
+                                       polypeptideDomains.proteinDomain.name"
+                                 externalLink="http://www.ebi.ac.uk/interpro/IEntry?ac="/>
+
+      <enrichmentwidgetdisplayer id="publication_enrichment"
+                                 title="Publication Enrichment"
+                                 description="Publications enriched for genes in this list."
+                                 label="Publication"
+                                 startClass="Gene"
+                                 startClassDisplay="primaryIdentifier"
+                                 enrich="publications.title"
+                                 enrichIdentifier="publications.pubMedId"
+                                 constraints="organism.name=[list],primaryIdentifier != null"
+                                 typeClass="Gene"
+                                 views="secondaryIdentifier, symbol, organism.name,
+                                       publications.title, publications.firstAuthor,
+                                       publications.journal, publications.year, publications.pubMedId"
+                                 externalLink="https://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;dopt=Abstract&amp;list_uids="/>
+     <enrichmentwidgetdisplayer id="ph_enrichment_for_gene"
+                                 title="Phenotype  Enrichment"
+                                 description="Phenotype enriched for items in this list."
+                                 label="Phenotype"
+                                 startClass="Gene"
+                                 startClassDisplay="primaryIdentifier"
+                                 enrich="phenotypeAnnotation.phenotype.name"
+                                 enrichIdentifier="phenotypeAnnotation.phenotype.name"
+                                 constraints="organism.name=[list],primaryIdentifier != null"
+                                 typeClass="Gene"
+                                 views="secondaryIdentifier,symbol,primaryIdentifier,organism.name,
+                                       phenotypeAnnotation.phenotype.name,phenotypeAnnotation.condition,phenotypeAnnotation.strain.name"
+                                 externalLink="http://amigo.geneontology.org/cgi-bin/amigo/term_details?term="/>
+     <enrichmentwidgetdisplayer id="pho_enrichment_for_gene"
+                                 title="Phenotype  Enrichment"
+                                 description="Phenotype enriched for items in this list."
+                                 label="Phenotype"
+                                 startClass="Gene"
+                                 startClassDisplay="primaryIdentifier"
+                                 enrich="phenotypeAnnotation.phenotype.observable.name"
+                                 enrichIdentifier="phenotypeAnnotation.phenotype.observable.identifier"
+                                 constraints="organism.name=[list],primaryIdentifier != null"
+                                 typeClass="Gene"
+                                 views="secondaryIdentifier,symbol,primaryIdentifier,organism.name,
+                                       phenotypeAnnotation.phenotype.name,phenotypeAnnotation.condition,phenotypeAnnotation.strain.name"
+                                 externalLink="https://www.yeastgenome.org/observable/"/>
+
+  <enrichmentwidgetdisplayer id="path_enrichment_for_gene"
+                                 title="Pathways Enrichment"
+                                 description="Pathways enriched for items in this list."
+                                 label="Pathways"
+                                 startClass="Gene"
+                                 startClassDisplay="primaryIdentifier"
+                                 enrich="pathways.name"
+                                 enrichIdentifier="pathways.identifier"
+                                 constraints="organism.name=[list],primaryIdentifier != null"
+                                 typeClass="Gene"
+                                 views="secondaryIdentifier,symbol,primaryIdentifier,organism.name,
+                                       pathways.name,pathways.identifier"
+                                 externalLink="http://www.genome.jp/kegg-bin/show_pathway?cal"/>
+
 
 </widgets>
 </webconfig>
