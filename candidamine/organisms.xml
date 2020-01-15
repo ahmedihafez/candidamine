@@ -1,0 +1,107 @@
+<items>
+<item id="-1_4" class="Organism">
+<attribute name="genus" value="Candida"/>
+<attribute name="name" value="Candida tropicalis"/>
+<attribute name="shortName" value="C. tropicalis"/>
+<attribute name="species" value="tropicalis"/>
+<attribute name="taxonId" value="5482"/>
+</item>
+<item id="-1_3" class="Organism">
+<attribute name="genus" value="Lodderomyces"/>
+<attribute name="name" value="Lodderomyces elongisporus NRRL YB-4239"/>
+<attribute name="shortName" value="L. elongisporus NRRL YB-4239"/>
+<attribute name="species" value="elongisporus NRRL YB-4239"/>
+<attribute name="taxonId" value="379508"/>
+</item>
+<item id="-1_2" class="Organism">
+<attribute name="genus" value="Candida"/>
+<attribute name="name" value="Candida albicans WO-1"/>
+<attribute name="shortName" value="C. albicans WO-1"/>
+<attribute name="species" value="albicans WO-1"/>
+<attribute name="taxonId" value="294748"/>
+</item>
+<item id="-1_1" class="Organism">
+<attribute name="genus" value="Candida"/>
+<attribute name="name" value="Candida albicans SC5314"/>
+<attribute name="shortName" value="C. albicans SC5314"/>
+<attribute name="species" value="albicans SC5314"/>
+<attribute name="taxonId" value="237561"/>
+</item>
+<item id="-1_14" class="Organism">
+<attribute name="genus" value="[Candida]"/>
+<attribute name="name" value="[Candida] glabrata CBS 138"/>
+<attribute name="shortName" value="[. glabrata CBS 138"/>
+<attribute name="species" value="glabrata CBS 138"/>
+<attribute name="taxonId" value="284593"/>
+</item>
+<item id="-1_15" class="Organism">
+<attribute name="genus" value="Debaryomyces"/>
+<attribute name="name" value="Debaryomyces hansenii CBS767"/>
+<attribute name="shortName" value="D. hansenii CBS767"/>
+<attribute name="species" value="hansenii CBS767"/>
+<attribute name="taxonId" value="284592"/>
+</item>
+<item id="-1_9" class="Organism">
+<attribute name="genus" value="Clavispora"/>
+<attribute name="name" value="Clavispora lusitaniae ATCC 42720"/>
+<attribute name="shortName" value="C. lusitaniae ATCC 42720"/>
+<attribute name="species" value="lusitaniae ATCC 42720"/>
+<attribute name="taxonId" value="306902"/>
+</item>
+<item id="-1_8" class="Organism">
+<attribute name="genus" value="Candida"/>
+<attribute name="name" value="Candida dubliniensis"/>
+<attribute name="shortName" value="C. dubliniensis"/>
+<attribute name="species" value="dubliniensis"/>
+<attribute name="taxonId" value="42374"/>
+</item>
+<item id="-1_10" class="Organism">
+<attribute name="genus" value="Candida"/>
+<attribute name="name" value="Candida parapsilosis CDC317"/>
+<attribute name="shortName" value="C. parapsilosis CDC317"/>
+<attribute name="species" value="parapsilosis CDC317"/>
+<attribute name="taxonId" value="578454"/>
+</item>
+<item id="-1_7" class="Organism">
+<attribute name="genus" value="Candida"/>
+<attribute name="name" value="Candida albicans"/>
+<attribute name="shortName" value="C. albicans"/>
+<attribute name="species" value="albicans"/>
+<attribute name="taxonId" value="5476"/>
+</item>
+<item id="-1_11" class="Organism">
+<attribute name="genus" value="Candida"/>
+<attribute name="name" value="Candida parapsilosis"/>
+<attribute name="shortName" value="C. parapsilosis"/>
+<attribute name="species" value="parapsilosis"/>
+<attribute name="taxonId" value="5480"/>
+</item>
+<item id="-1_6" class="Organism">
+<attribute name="genus" value="Candida"/>
+<attribute name="name" value="Candida tropicalis MYA-3404"/>
+<attribute name="shortName" value="C. tropicalis MYA-3404"/>
+<attribute name="species" value="tropicalis MYA-3404"/>
+<attribute name="taxonId" value="294747"/>
+</item>
+<item id="-1_12" class="Organism">
+<attribute name="genus" value="[Candida]"/>
+<attribute name="name" value="[Candida] glabrata"/>
+<attribute name="shortName" value="[. glabrata"/>
+<attribute name="species" value="glabrata"/>
+<attribute name="taxonId" value="5478"/>
+</item>
+<item id="-1_5" class="Organism">
+<attribute name="genus" value="Meyerozyma"/>
+<attribute name="name" value="Meyerozyma guilliermondii ATCC 6260"/>
+<attribute name="shortName" value="M. guilliermondii ATCC 6260"/>
+<attribute name="species" value="guilliermondii ATCC 6260"/>
+<attribute name="taxonId" value="294746"/>
+</item>
+<item id="-1_13" class="Organism">
+<attribute name="genus" value="Candida"/>
+<attribute name="name" value="Candida orthopsilosis Co 90-125"/>
+<attribute name="shortName" value="C. orthopsilosis Co 90-125"/>
+<attribute name="species" value="orthopsilosis Co 90-125"/>
+<attribute name="taxonId" value="1136231"/>
+</item>
+</items>
