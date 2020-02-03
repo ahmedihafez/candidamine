@@ -1,0 +1,7 @@
+rootProject.name = 'bio-sources'
+include ':bio-source-candida-gff'
+project(':bio-source-candida-gff').projectDir = new File(settingsDir, './candida-gff')
+include ':bio-source-cgd-identifiers'
+project(':bio-source-cgd-identifiers').projectDir = new File(settingsDir, './cgd-identifiers')
+include ':bio-source-cgd-orthologs'
+project(':bio-source-cgd-orthologs').projectDir = new File(settingsDir, './cgd-orthologs')
