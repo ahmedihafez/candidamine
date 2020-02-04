@@ -20,18 +20,55 @@
   <c:if test="${fn:length(headerLinks) > 0}">
     <%-- Menu appearing at the top right (about, etc..) --%>
     <div id="topnav">
-      <c:forEach var="entry" items="${headerLinks}" varStatus="status">
-        <c:if test="${status.count != 1}">&nbsp;|&nbsp;</c:if>
-        <c:set value="header.links.${entry}" var="linkProp"/>
-        <c:choose>
-          <c:when test="${!empty WEB_PROPERTIES[linkProp]}">
-                  <a href="${WEB_PROPERTIES[linkProp]}">${entry}</a>
-          </c:when>
-          <c:otherwise>
-            <a href="${WEB_PROPERTIES['project.sitePrefix']}/${entry}.shtml">${entry}</a>
-          </c:otherwise>
-        </c:choose>
-      </c:forEach>
+    <div id="topnav-inner">
+      <ul id="loginbar">
+        <c:forEach var="entry" items="${headerLinks}" varStatus="status">
+          <c:if test="${status.count != 1}">&nbsp;|&nbsp;</c:if>
+          <c:set value="header.links.${entry}" var="linkProp"/>
+          <c:choose>
+            <c:when test="${!empty WEB_PROPERTIES[linkProp]}">
+                <li>  <a href="${WEB_PROPERTIES[linkProp]}">${entry}</a> </li> 
+            </c:when>
+            <c:otherwise>
+              <li>  <a href="${WEB_PROPERTIES['project.sitePrefix']}/${entry}.shtml">${entry}</a></li>
+            </c:otherwise>
+          </c:choose>
+        </c:forEach>
+
+        <li><a href="#" onclick="showContactForm();return false;"><fmt:message key="feedback.link"/></a></li>
+        <c:if test="${PROFILE.loggedIn}">
+            <li>
+
+              <!-- display (optionally trimmed) username -->
+              <c:choose>
+                <c:when test="${! empty PROVIDER}">
+                  <c:choose>
+                    <c:when test="${empty USERNAME || USERNAME == 'nullnull'}">
+                      <c:set var="displayUserName" value="logged in with OpenID"/>
+                    </c:when>
+                   <c:otherwise>
+                     <c:set var="displayUserName" value="${USERNAME}"/>
+                   </c:otherwise>
+                  </c:choose>
+                </c:when>
+                <c:otherwise>
+                  <c:set var="displayUserName" value="${PROFILE.name}"/>
+                </c:otherwise>
+              </c:choose>
+
+              <c:choose>
+                <c:when test="${fn:length(displayUserName) > 25}">
+                  <c:out value="${fn:substring(displayUserName,0,25)}"/>&hellip;
+                </c:when>
+                <c:otherwise>
+                  <c:out value="${displayUserName}"/>
+                </c:otherwise>
+              </c:choose>
+            </li>
+        </c:if>
+        <li class="last"><im:login/></li>
+    </ul>
+    </div>
     </div>
   </c:if>
   <div id="header">
@@ -88,40 +125,7 @@
         </a>
       </li>
     </ul>
-  <ul id="loginbar">
-        <li><a href="#" onclick="showContactForm();return false;"><fmt:message key="feedback.link"/></a></li>
-        <c:if test="${PROFILE.loggedIn}">
-            <li>
-
-              <!-- display (optionally trimmed) username -->
-              <c:choose>
-                <c:when test="${! empty PROVIDER}">
-                  <c:choose>
-                    <c:when test="${empty USERNAME || USERNAME == 'nullnull'}">
-                      <c:set var="displayUserName" value="logged in with OpenID"/>
-                    </c:when>
-                   <c:otherwise>
-                     <c:set var="displayUserName" value="${USERNAME}"/>
-                   </c:otherwise>
-                  </c:choose>
-                </c:when>
-                <c:otherwise>
-                  <c:set var="displayUserName" value="${PROFILE.name}"/>
-                </c:otherwise>
-              </c:choose>
-
-              <c:choose>
-                <c:when test="${fn:length(displayUserName) > 25}">
-                  <c:out value="${fn:substring(displayUserName,0,25)}"/>&hellip;
-                </c:when>
-                <c:otherwise>
-                  <c:out value="${displayUserName}"/>
-                </c:otherwise>
-              </c:choose>
-            </li>
-        </c:if>
-        <li class="last"><im:login/></li>
-    </ul>
+  
   </div>
 
   <!-- Logged in section -->
