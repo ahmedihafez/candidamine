@@ -166,7 +166,7 @@ if (typeof imtables != 'undefined' && imtables.setMessages) {
       <tiles:get name="errorMessages"/>
 
       <%-- footer (welcome logo, bottom nav, and feedback link) --%>
-    <c:import url="footer.jsp"/>
+    <%-- <c:import url="footer.jsp"/>--%>
 
       <c:if test="${param.debug != null}">
         <im:vspacer height="11"/>
@@ -241,10 +241,15 @@ if (typeof imtables != 'undefined' && imtables.setMessages) {
           }
         </script>
     </c:if>
-    <c:if test="${!empty fixedLayout}">
+    <!-- <c:if test="${!empty fixedLayout}">
       </div>
-    </c:if>
+    </c:if> -->
   </div>
+
+<div id="footer-wrapper">
+  <c:import url="footer.jsp"/>
+</div>
+
 </body>
 </html:html>
 <!-- /layout.jsp -->
