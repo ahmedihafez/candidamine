@@ -245,6 +245,7 @@ if (typeof imtables != 'undefined' && imtables.setMessages) {
       </div>
     </c:if> -->
   </div>
+</div>
 
 <div id="footer-wrapper">
   <c:import url="footer.jsp"/>
