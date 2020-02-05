@@ -4,7 +4,7 @@
     <icon-image>model/images/genomics.gif</icon-image>
     <large-image>model/images/genomics.gif</large-image>
     <intro-text>
-      The gene structure and other genome annotation in MalariaMine are provided by
+      The gene structure and other genome annotation in Candida are provided by
       a variety of curated source databases.  In most cases MalariaMine includes
       all genome features that have chromosomal locations.
     </intro-text>
