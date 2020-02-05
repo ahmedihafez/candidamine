@@ -44,15 +44,7 @@
 
 </div>
 
-<div class="funding-footer footer">
-  <!-- funding -->
-  <fmt:message key="funding" />
-  <c:set var="credits"><fmt:message key="credits" /></c:set>
 
-  <c:if test="${!fn:startsWith(credits,'???')}">
-       ${credits}
-    </c:if>
-</div>
 
 
 <!-- cam logo and links -->
@@ -67,8 +59,7 @@
     <a class="cambridge-logo" href="http://www.cam.ac.uk/" title="University of Cambridge" target="_blank">
         <img src="images/icons/cambridge-footer-logo.png" alt="University of Cambridge logo">
     </a>
-    <p class="footer-copy">&copy; 2002 - 2019 Department of Genetics, University of Cambridge, Downing Street,<br />
-        Cambridge CB2 3EH, United Kingdom</p>
+    <p class="footer-copy">&copy; 2002 - 2019 Department of Genetics, University of Cambridge.</p>
 </div>
 <!--     <ul class="footer-links">
         <li><a href="#" onclick="showContactForm();return false;">Contact Us</a></li>
