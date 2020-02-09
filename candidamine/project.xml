@@ -5,11 +5,16 @@
   <property name="default.intermine.properties.file" location="../default.intermine.integrate.properties"/>
 
   <sources>
-    	<source name="uniprot-candida" type="uniprot">
-		<property name="uniprot.organisms" value="5476 5478 5480 5482"/>
-		<property name="creatego" value="true"/>
-		<property name="src.data.dir" location="/data/candidamine/data/candida/uniprot/"/>
+
+	<source name="so" type="so">
+      		<property name="src.data.file" location="/data/candidamine/data/candida/so/so.obo" />
     	</source>
+
+
+        <source name="apo" type="apo">
+                <property name="src.data.file" location="/data/candidamine/data/candida/apo/apo.obo" />
+        </source>
+
 
         <source name="candida-albicans-gff" type="candida-gff">
                 <property name="gff3.taxonId" value="237561"/>
@@ -31,6 +36,11 @@
 		<property name="src.data.dir" location="/data/candidamine/data/candida/genome/albicans_237561/fasta"/>
         </source>
 
+    	<source name="uniprot-candida" type="uniprot">
+		<property name="uniprot.organisms" value="5476 5478 5480 5482"/>
+		<property name="creatego" value="true"/>
+		<property name="src.data.dir" location="/data/candidamine/data/candida/uniprot/"/>
+    	</source>
 
 
         <source name="cgd-al-ids" type="cgd-identifiers">
@@ -40,7 +50,7 @@
         </source>
 
 
-
+	
    
     	<source name="go" type="go">
 		<property name="src.data.file" location="/data/candidamine/data/candida/go/go-basic.obo"/>
@@ -70,6 +80,11 @@
         </source>
 
 
+      <source name="cal-phenotype" type="cgd-phenotype">
+          <property name="src.data.dir" location="/data/candidamine/data/candida/phenotype/cal"/>
+          <property name="strainPrefix" value="Candida albicans"/>
+          <property name="taxonId" value="5476"/>
+      </source>
 
 
     	<source name="update-publications" type="update-publications">
