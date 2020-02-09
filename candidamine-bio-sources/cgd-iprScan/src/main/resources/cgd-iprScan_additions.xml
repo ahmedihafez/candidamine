@@ -2,6 +2,20 @@
 <!-- This file details any extensions needed to the data model to store data from this source, everything else is automatically generated from the model description so this is all we need to do to add to the model. -->
 
 <classes>
-<!-- add any <class> elements here -->
+    <class name="Gene" is-interface="true">
+        <collection name="polypeptideDomains" referenced-type="PolypeptideDomain" reverse-reference="gene" />
+    </class>
+    <class name="PolypeptideDomain" extends="BioEntity" is-interface="true">
+        <reference name="proteinDomain" referenced-type="ProteinDomain" reverse-reference="polypeptideDomains"/>
+        <attribute name="transcriptStart" type="java.lang.Integer"/>
+        <attribute name="transcriptEnd" type="java.lang.Integer"/>
+        <attribute name="analysisMethod" type="java.lang.String"/>
+        <attribute name="transcriptId" type="java.lang.String"/>
+        <attribute name="description" type="java.lang.String"/>
+        <reference name="gene" referenced-type="Gene" reverse-reference="polypeptideDomains"/>
+    </class>
 
+    <class name="ProteinDomain" extends="BioEntity" is-interface="true">
+        <collection name="polypeptideDomains" referenced-type="PolypeptideDomain" reverse-reference="proteinDomain" />
+    </class>
 </classes>
