@@ -86,13 +86,22 @@ public class CandidaGffGFF3RecordHandler extends GFF3RecordHandler
                     feature.setAttribute("primaryIdentifier", primaryIdentifier);
 
             }
+
+            String secondary = feature.getAttribute("secondaryIdentifier").getValue();
+            String symbol = feature.getAttribute("symbol").getValue();
+            // System.err.println("Gene secondary " + secondary);
+            // System.err.println("Gene symbol " + symbol);
+            // clear duplicate names and symbol if it is the same
+            if(secondary.equals(symbol)) {
+                feature.removeAttribute("symbol");
+            }
         }
     }
 
     @Override
     public void addSynonyms(List<String> synonyms) {
        //this.synonyms.addAll(synonyms);
-        // do nothing here :: Maybe a abug in  base handler
+        // do nothing here :: Maybe a a bug in  base handler
     }
 
 }
