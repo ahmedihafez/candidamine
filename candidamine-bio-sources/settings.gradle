@@ -5,3 +5,11 @@ include ':bio-source-cgd-identifiers'
 project(':bio-source-cgd-identifiers').projectDir = new File(settingsDir, './cgd-identifiers')
 include ':bio-source-cgd-orthologs'
 project(':bio-source-cgd-orthologs').projectDir = new File(settingsDir, './cgd-orthologs')
+include ':bio-source-cgd-iprScan'
+project(':bio-source-cgd-iprScan').projectDir = new File(settingsDir, './cgd-iprScan')
+include ':bio-source-cgd-phenotype'
+project(':bio-source-cgd-phenotype').projectDir = new File(settingsDir, './cgd-phenotype')
+include ':bio-source-cgd-vcf'
+project(':bio-source-cgd-vcf').projectDir = new File(settingsDir, './cgd-vcf')
+include ':bio-source-apo'
+project(':bio-source-apo').projectDir = new File(settingsDir, './apo')

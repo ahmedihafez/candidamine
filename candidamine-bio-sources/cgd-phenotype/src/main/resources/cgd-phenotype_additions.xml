@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!-- This file details any extensions needed to the data model to store data from this source, everything else is automatically generated from the model description so this is all we need to do to add to the model. -->
+
+<classes>
+    <!-- Allele class added here to fix missing class problem TB Fixed later -->
+    <class name="Allele" extends="BioEntity" is-interface="true"/>
+
+    <class name="Chemical" is-interface="true">
+        <attribute name="name" type="java.lang.String"/>
+    </class>
+
+
+    <class name="Observable"  is-interface="true">
+    </class>
+    <class name="MutantType"  is-interface="true">
+    </class>
+    <class name="Qualifier"  is-interface="true">
+    </class>
+    <class name="ExperimentType"  is-interface="true">
+        <attribute name="details" type="java.lang.String"/>
+    </class>
+
+
+    <class  name="Strain"   is-interface="true">
+    </class>
+    <class name="Phenotype"  is-interface="true">
+        <attribute name="name" type="java.lang.String"/>
+        <reference name="observable" referenced-type="Observable" />
+        <reference name="qualifier" referenced-type="Qualifier" />
+        <reference name="chemical" referenced-type="Chemical"/>
+
+    </class>
+
+    <class name="Publication" is-interface="true">
+        <collection name="phenotypeAnnotations" referenced-type="PhenotypeAnnotation" reverse-reference="publications"/>
+    </class>
+
+
+    <class name="SequenceFeature"  is-interface="true">
+        <collection name="phenotypeAnnotation" referenced-type="PhenotypeAnnotation" reverse-reference="feature"/>
+    </class>
+
+    <class name="PhenotypeAnnotation"  is-interface="true">
+        <reference name="phenotype" referenced-type="Phenotype" />
+        <reference name="feature" referenced-type="SequenceFeature" />
+        <reference name="allele" referenced-type="Allele" />
+        <reference name="strain" referenced-type="Strain"/>
+        <reference name="organism" referenced-type="Organism"/>
+        <reference name="mutantType" referenced-type="MutantType"/>
+
+        <!-- 		<reference name="condition" referenced-type="Condition"/> -->
+
+        <reference name="experimentType" referenced-type="ExperimentType"/>
+        <collection name="publications" referenced-type="Publication" reverse-reference="phenotypeAnnotations"/>
+        <attribute name="chemicalDetails" type="java.lang.String"/>
+        <attribute name="phenotypeDetails" type="java.lang.String"/>
+        <attribute name="experimentDetails" type="java.lang.String"/>
+        <attribute name="condition" type="java.lang.String"/>
+
+    </class>
+</classes>
