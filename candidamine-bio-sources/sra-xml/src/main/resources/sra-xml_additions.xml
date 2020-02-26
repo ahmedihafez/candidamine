@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!-- This file details any extensions needed to the data model to store data from this source, everything else is automatically generated from the model description so this is all we need to do to add to the model. -->
+
+<classes>
+<!-- add any <class> elements here -->
+
+    <class name="SRAObject" is-interface="true">
+        <attribute name="accession" type="java.lang.String"/>
+        <attribute name="title" type="java.lang.String"/>
+        <attribute name="alias" type="java.lang.String"/>
+        <collection name="attributes" referenced-type="SRAAttribute" reverse-reference="sraObject" />
+
+    </class>
+    <class name="SRAExperiment" extends="SRAObject" is-interface="true">
+        <reference name="sraSample" referenced-type="SRASample" reverse-reference="sraExperiments"/>
+        <reference name="sraStudy" referenced-type="SRAStudy" reverse-reference="sraExperiments"/>
+        <collection name="sraRuns" referenced-type="SRARun" reverse-reference="sraExperiment" />
+        <collection name="experimentDetails" referenced-type="SRAAttribute" />
+        <attribute name="libraryName" type="java.lang.String"/>
+    </class>
+
+    <class name="SRARun" extends="SRAObject" is-interface="true">
+        <reference name="sraExperiment" referenced-type="SRAExperiment" reverse-reference="sraRuns"/>
+    </class>
+
+    <class name="SRASample" extends="SRAObject" is-interface="true">
+        <collection name="sraExperiments" referenced-type="SRAExperiment" reverse-reference="sraSample" />
+        <attribute name="genotype" type="java.lang.String"/>
+        <reference name="organism" referenced-type="Organism" reverse-reference="sraSamples"/>
+        <reference name="host" referenced-type="Organism" />
+        <reference name="strain" referenced-type="CStrain" />
+
+    </class>
+
+    <class name="SRAStudy" extends="SRAObject" is-interface="true">
+        <reference name="abstractText" referenced-type="Description" />
+        <attribute name="type" type="java.lang.String"/>
+        <collection name="sraExperiments" referenced-type="SRAExperiment" reverse-reference="sraStudy" />
+        <collection name="publications" referenced-type="Publication" />
+    </class>
+
+
+    <class name="Organism" is-interface="true">
+        <collection name="strains" referenced-type="CStrain" reverse-reference="organism"/>
+        <collection name="sraSamples" referenced-type="SRASample" reverse-reference="organism"/>
+
+    </class>
+
+    <class  name="CStrain"  extends="Organism"  is-interface="true">
+        <reference name="organism" referenced-type="Organism" reverse-reference="strains"/>
+    </class>
+
+    <class name="AttributeKey"  is-interface="true" >
+        <attribute name="name" type="java.lang.String"/>
+    </class>
+
+    <class name="AttributeValue"  is-interface="true" >
+        <attribute name="value" type="java.lang.String"/>
+    </class>
+
+    <class name="AttributeUValue"  extends="AttributeValue" is-interface="true" >
+        <attribute name="units" type="java.lang.String"/>
+    </class>
+
+    <class name="SRAAttribute"  is-interface="true" >
+        <reference name="attributeName" referenced-type="AttributeKey" />
+        <reference name="attributeValue" referenced-type="AttributeValue" />
+        <reference name="sraObject" referenced-type="SRAObject" reverse-reference="attributes"/>
+
+    </class>
+
+    <class name="Description" >
+        <attribute name="description" type="java.lang.String"/>
+    </class>
+
+
+</classes>
