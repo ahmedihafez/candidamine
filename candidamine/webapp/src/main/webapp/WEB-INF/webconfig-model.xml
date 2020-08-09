@@ -188,6 +188,130 @@
     </fields>
   </class>
 
+
+  <class className="org.intermine.model.bio.OrthologueEvidence">
+    <fields>
+      <fieldconfig fieldExpr="evidenceCode.name"/>
+    </fields>
+  </class>
+
+  <class className="org.intermine.model.bio.OrthologueEvidenceCode">
+    <fields>
+      <fieldconfig fieldExpr="abbreviation"/>
+      <fieldconfig fieldExpr="name" />
+    </fields>
+  </class>
+
+
+  <class className="org.intermine.model.bio.Homologue">
+    <fields>
+      <fieldconfig fieldExpr="gene.primaryIdentifier" showInResults="false" showInInlineCollection="false" />
+      <fieldconfig fieldExpr="homologue.primaryIdentifier"/>
+      <fieldconfig fieldExpr="homologue.organism.shortName"/>
+      <fieldconfig fieldExpr="type"/>
+    </fields>
+  </class>
+
+
+    <class className="org.intermine.model.bio.PolypeptideDomain">
+      <headerconfig>
+            <titles>
+                <title mainTitles="gene.secondaryIdentifier|primaryIdentifier" />
+            </titles>
+        </headerconfig>
+      <fields>
+        <fieldconfig fieldExpr="primaryIdentifier"/>
+              <fieldconfig fieldExpr="gene.secondaryIdentifier" label="Gene"/>
+              <fieldconfig fieldExpr="description"/>
+              <fieldconfig fieldExpr="proteinDomain.name" label="Protein Domain"/>
+      </fields>
+    </class>
+
+
+    <class className="org.intermine.model.bio.Phenotype">
+      <headerconfig>
+                    <titles>
+                            <title mainTitles="observable.name|qaulifier.name|chemical.name" />
+                    </titles>
+            </headerconfig>
+        <fields>
+          <fieldconfig fieldExpr="observable.name"  label="Observation"     />
+          <fieldconfig fieldExpr="qualifier.name"  label="Qualifier"     />
+          <fieldconfig fieldExpr="chemical.name"  label="Chemical"     />
+        </fields>
+    </class>
+
+
+ <class className="org.intermine.model.bio.PhenotypeAnnotation">
+
+  <headerconfig>
+      <titles>
+          <title mainTitles="phenotype.observable.name|phenotype.qaulifier.name|phenotype.chemical.name" />
+      </titles>
+  </headerconfig>
+
+  <fields>
+      <fieldconfig fieldExpr="phenotype.name"  label="Phenotype"     />
+      <!--    <fieldconfig fieldExpr="feature.primaryIdentifier"  label="Feature"     /> -->
+      <fieldconfig fieldExpr="strain.name"  label="Strain"     />
+      <fieldconfig fieldExpr="mutantType.name"  label="Mutant"     />
+      <fieldconfig fieldExpr="condition"  label="Condition"     />
+  </fields>
+</class>
+
+
+    <class className="org.intermine.model.bio.SRAObject">
+        <headerconfig>
+            <titles>
+                <title mainTitles="accession" subTitles="*title*"  />
+            </titles>
+            <fields>
+                <fieldconfig fieldExpr="accession"  label="Accession"     />
+                <fieldconfig fieldExpr="title"  label="Title"     />
+                <fieldconfig fieldExpr="alias"  label="Alias"     />
+            </fields>
+        </headerconfig>
+    </class>
+
+
+    <class className="org.intermine.model.bio.SRAAttribute">
+        <headerconfig>
+            <titles>
+                <title mainTitles="attributeName.name|attributeValue.value" />
+            </titles>
+        </headerconfig>
+        <fields>
+            <fieldconfig fieldExpr="attributeName.name"  label="Key"     />
+            <fieldconfig fieldExpr="attributeValue.value"  label="Value"     />
+        </fields>
+    </class>
+
+
+    <class className="org.intermine.model.bio.SRAStudy">
+        <headerconfig>
+            <titles>
+                <title mainTitles="title|accession" numberOfMainTitlesToShow="1"  doNotTruncate="true"/>
+            </titles>
+        </headerconfig>
+        <fields>
+            <fieldconfig fieldExpr="accession"  label="Accession"     />
+            <fieldconfig fieldExpr="alias"  label="Alias"     />
+            <fieldconfig fieldExpr="title"  label="Title"     />
+            <fieldconfig fieldExpr="type"  label="Type"     />
+        </fields>
+    </class>
+
+    <class className="org.intermine.model.bio.AttributeValue">
+        <headerconfig>
+            <titles>
+                <title mainTitles="value" />
+            </titles>
+        </headerconfig>
+        <fields>
+            <fieldconfig fieldExpr="value"  label="Value"     />
+        </fields>
+    </class>
+
 <!-- exporters -->
   <tableExportConfig id="sequence" className="org.intermine.bio.web.export.SequenceHttpExporter"/>
   <tableExportConfig id="gff3" className="org.intermine.bio.web.export.GFF3HttpExporter"/>
@@ -195,29 +319,48 @@
 
   <reportdisplayers>
 
-   <reportdisplayer javaClass="org.intermine.bio.web.displayer.GeneOntologyDisplayer"
+      <reportdisplayer javaClass="org.intermine.bio.web.displayer.GeneOntologyDisplayer"
                      jspName="model/geneOntologyDisplayer.jsp"
                      replacesFields="goAnnotation,ontologyAnnotations"
                      placement="Genomics"
                      types="Gene"/>
-
-    <reportdisplayer javaClass="org.intermine.bio.web.displayer.GeneStructureDisplayer"
+      <reportdisplayer javaClass="org.intermine.bio.web.displayer.GeneStructureDisplayer"
                      jspName="model/geneStructureDisplayer.jsp"
                      replacesFields="transcripts,exons,CDSs,introns,UTRs,fivePrimeUTR,threePrimeUTR"
                      placement="Genomics"
                      types="Gene,Transcript,Exon,Intron,UTR,CDS"/>
 
-    <reportdisplayer javaClass="org.intermine.bio.web.displayer.SequenceFeatureDisplayer"
+      <reportdisplayer javaClass="org.intermine.bio.web.displayer.SequenceFeatureDisplayer"
                      jspName="model/sequenceFeatureDisplayer.jsp"
                      replacesFields="chromosome,chromosomeLocation,sequence,length,sequenceOntologyTerm,locations,cytoLocation"
                      placement="summary"
                      types="SequenceFeature"/>
 
-    <reportdisplayer javaClass="org.intermine.bio.web.displayer.UniProtCommentsDisplayer"
+      <reportdisplayer javaClass="org.intermine.bio.web.displayer.UniProtCommentsDisplayer"
                      jspName="model/uniProtCommentsDisplayer.jsp"
                      replacesFields=""
                      placement="Proteins"
                      types="Gene,Protein"/>
+
+      <reportdisplayer javaClass="org.intermine.bio.web.displayer.HomologueDisplayer"
+                     jspName="model/homologueDisplayer.jsp"
+                     replacesFields="homologues"
+                     placement="Homology"
+                     parameters="{'dataSets': ['CGD Orthologs by CGOB','CGD and AspGD Orthologs by InParanoid']}"
+                     types="Gene"/>
+
+      <reportdisplayer javaClass="org.candidamine.web.displayer.ExpressionDisplayer"
+                       jspName="model/expressionDisplayer.jsp"
+                       replacesFields="rnaseqResultReads"
+                       placement="Expression"
+                       types="Gene"/>
+
+      <reportdisplayer javaClass="org.intermine.bio.web.displayer.JBrowseDisplayer"
+                       jspName="model/jbrowseDisplayer.jsp"
+                       replacesFields=""
+                       placement="Genomics"
+                       types="SequenceFeature"/>
+
 
   </reportdisplayers>
 
