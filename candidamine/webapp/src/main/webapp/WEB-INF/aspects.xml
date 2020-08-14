@@ -4,9 +4,6 @@
     <icon-image>model/images/genomics.gif</icon-image>
     <large-image>model/images/genomics.gif</large-image>
     <intro-text>
-      The gene structure and other genome annotation in Candida are provided by
-      a variety of curated source databases.  In most cases MalariaMine includes
-      all genome features that have chromosomal locations.
     </intro-text>
     <tile-name>model/genomics.jsp</tile-name>
     <aspect-source name="GeneDB" url="http://www.genedb.org"/>
@@ -21,4 +18,30 @@
     <tile-name>model/proteins.jsp</tile-name>
     <aspect-source name="UniProt" url="http://www.uniprot.org"/>
   </aspect>
+  <aspect name="Homology">
+    <subtitle></subtitle>
+    <icon-image></icon-image>
+    <large-image></large-image>
+    <intro-text>
+    </intro-text>
+    <tile-name></tile-name>
+  </aspect>
+  <aspect name="Expression">
+    <subtitle></subtitle>
+    <icon-image></icon-image>
+    <large-image></large-image>
+    <intro-text>
+    </intro-text>
+    <tile-name></tile-name>
+  </aspect>
+
+  <aspect name="Interactions">
+    <subtitle></subtitle>
+    <icon-image></icon-image>
+    <large-image></large-image>
+    <intro-text>
+    </intro-text>
+    <tile-name></tile-name>
+  </aspect>
+
 </aspects>

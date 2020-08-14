@@ -312,7 +312,51 @@
         </fields>
     </class>
 
-<!-- exporters -->
+
+
+
+    <class className="org.intermine.model.bio.Interaction">
+        <fields>
+            <fieldconfig fieldExpr="participant1.primaryIdentifier" />
+            <fieldconfig fieldExpr="participant2.primaryIdentifier" />
+        </fields>
+    </class>
+
+
+    <class className="org.intermine.model.bio.InteractionDetail">
+        <fields>
+            <fieldconfig fieldExpr="type"/>
+            <fieldconfig fieldExpr="relationshipType"/>
+            <fieldconfig fieldExpr="name"/>
+            <fieldconfig fieldExpr="role1"/>
+            <fieldconfig fieldExpr="role2"/>
+        </fields>
+    </class>
+
+    <class className="org.intermine.model.bio.StringInteractionDetail">
+        <fields>
+            <fieldconfig fieldExpr="type"/>
+            <fieldconfig fieldExpr="relationshipType"/>
+            <fieldconfig fieldExpr="name"/>
+            <fieldconfig fieldExpr="role1"/>
+            <fieldconfig fieldExpr="role2"/>
+            <fieldconfig fieldExpr="combinedScore"  label="Score"/>
+
+            <fieldconfig fieldExpr="neighborhoodScore"  label="Neighborhood in the Genome Score"/>
+            <fieldconfig fieldExpr="fusionScore"  label="Gene Fusions Score"/>
+            <fieldconfig fieldExpr="cooccurenceScore"  label="Co-Occurence Across Genomes Score"/>
+            <fieldconfig fieldExpr="coexpressionScore"  label="Co-Expression Score"/>
+            <fieldconfig fieldExpr="experimentalScore"  label="Experimental/Biochemical Data Score"/>
+            <fieldconfig fieldExpr="databaseScore"  label="Association in Curated Databases Score"/>
+            <fieldconfig fieldExpr="textminingScore"  label="Co-Mentioned in PubMed Abstracts Score"/>
+        </fields>
+    </class>
+
+
+
+
+
+    <!-- exporters -->
   <tableExportConfig id="sequence" className="org.intermine.bio.web.export.SequenceHttpExporter"/>
   <tableExportConfig id="gff3" className="org.intermine.bio.web.export.GFF3HttpExporter"/>
   <tableExportConfig id="bed" className="org.intermine.bio.web.export.BEDHttpExporter"/>
@@ -360,7 +404,11 @@
                        replacesFields=""
                        placement="Genomics"
                        types="SequenceFeature"/>
-
+      <reportdisplayer javaClass="org.intermine.bio.web.displayer.CytoscapeNetworkDisplayer"
+                       jspName="model/cytoscapeNetworkDisplayer.jsp"
+                       replacesFields="interactions"
+                       placement="Interactions"
+                       types="Gene"/>
 
   </reportdisplayers>
 
