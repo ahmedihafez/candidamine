@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- This file details any extensions needed to the data model to store data from this source, everything else is automatically generated from the model description so this is all we need to do to add to the model. -->
+
+<classes>
+
+    <class name="Interaction" is-interface="true">
+        <reference name="participant1" referenced-type="BioEntity" reverse-reference="interactions" />
+        <reference name="participant2" referenced-type="BioEntity" />
+        <collection name="details" referenced-type="InteractionDetail" reverse-reference="interaction"/>
+    </class>
+
+    <class name="InteractionDetail" is-interface="true">
+        <attribute name="role1" type="java.lang.String"/>
+        <attribute name="role2" type="java.lang.String"/>
+        <attribute name="name" type="java.lang.String"/>
+        <attribute name="type" type="java.lang.String"/>
+        <attribute name="relationshipType" type="java.lang.String"/>
+        <!--<reference name="experiment" referenced-type="InteractionExperiment" reverse-reference="interactions"/>-->
+        <reference name="interaction" referenced-type="Interaction" reverse-reference="details"/>
+        <collection name="dataSets" referenced-type="DataSet"/>
+        <!--<collection name="allInteractors" referenced-type="Interactor"/>-->
+    </class>
+
+    <class name="StringInteractionDetail"  extends="InteractionDetail" is-interface="true">
+        <attribute name="neighborhoodScore" type="java.lang.Float"/>
+        <attribute name="fusionScore" type="java.lang.Float"/>
+        <attribute name="cooccurenceScore" type="java.lang.Float"/>
+        <attribute name="coexpressionScore" type="java.lang.Float"/>
+        <attribute name="experimentalScore" type="java.lang.Float"/>
+        <attribute name="databaseScore" type="java.lang.Float"/>
+        <attribute name="textminingScore" type="java.lang.Float"/>
+        <attribute name="combinedScore" type="java.lang.Float"/>
+    </class>
+
+    <class name="BioEntity" is-interface="true">
+        <collection name="interactions" referenced-type="Interaction" reverse-reference="participant1"/>
+    </class>
+</classes>
