@@ -17,6 +17,11 @@
 
 
     <sources>
+
+        <!-- FIX load strains first-->
+
+
+
         <source name="so" type="so">
             <property name="src.data.file" location="/data/candidamine/data/candida/so/so.obo" />
             <property name="licence" value="https://creativecommons.org/licenses/by/4.0/"/>
@@ -155,14 +160,7 @@
         </source>
 
 
-        <source name="cgd-cgal-vcf" type="cgd-vcf">
-            <property name="src.data.dir" location="/data/candidamine/data/candida/variation/29249661"/>
-            <property name="taxonId" value="5478"/>
-            <property name="pubmedIds" value="29249661,29249662"/>
-            <property name="dataSet" value="Variants"/>
-            <property name="dataSetDesc" value="Variants dataset provided by"/>
-            <property name="dataSource" value="CandidaMine"/>
-        </source>
+
 
 
         <source name="go" type="go">
@@ -330,6 +328,17 @@
             <property name="src.data.dir" location="/data/candidamine/data/candida/string/5482"/>
             <property name="taxonId" value="294747"/>
         </source>
+
+        <source name="cgd-cgal-vcf" type="cgd-vcf">
+            <property name="src.data.dir" location="/data/candidamine/data/candida/variation/29249661"/>
+            <property name="taxonId" value="284593"/>
+            <property name="pubmedIds" value="29249661"/>
+            <property name="dataSet" value="Variants Collection"/>
+            <property name="dataSetDesc" value="Variants dataset"/>
+            <property name="dataSource" value="CandidaMine"/>
+        </source>
+
+
 
         <source name="update-publications" type="update-publications">
             <property name="src.data.file" location="publications.xml"/>

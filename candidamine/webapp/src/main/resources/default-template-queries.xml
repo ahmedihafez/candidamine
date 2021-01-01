@@ -21,8 +21,135 @@
     <constraint path="Protein.organism.name" editable="true" description="Organism.name" op="=" value="Plasmodium falciparum 3D7"/>
   </query>
 </template>
+
+
+  <template name="GOterm_Gene" title="GO term --&gt; Genes" comment="Added 26OCT2010: ML">
+    <query name="GOterm_Gene" model="genomic" view="Gene.primaryIdentifier Gene.symbol Gene.name Gene.goAnnotation.ontologyTerm.identifier Gene.goAnnotation.ontologyTerm.name Gene.organism.shortName" longDescription="Search for Genes in a specified organism that are associated with a particular Gene Ontology (GO) annotation." sortOrder="Gene.symbol asc" constraintLogic="A and B">
+      <pathDescription pathString="Gene.goAnnotation" description="GO annotation"/>
+      <constraint path="Gene.goAnnotation.ontologyTerm.name" code="A" editable="true" description="GO Term" op="=" value="DNA binding"/>
+      <constraint path="Gene.organism.shortName" code="B" editable="true" op="=" value="Candida albicans SC5314"/>
+    </query>
+  </template>
+
+  <template name="Gene_GO" title="Gene --&gt; GO terms." comment="Added 15NOV2010: ML">
+    <query name="Gene_GO" model="genomic" view="Gene.primaryIdentifier Gene.symbol Gene.goAnnotation.ontologyTerm.identifier Gene.goAnnotation.ontologyTerm.name Gene.goAnnotation.ontologyTerm.namespace Gene.goAnnotation.evidence.code.code Gene.goAnnotation.ontologyTerm.parents.identifier Gene.goAnnotation.ontologyTerm.parents.name Gene.goAnnotation.qualifier" longDescription="Search for GO annotations for a particular gene (or List of Genes)." sortOrder="Gene.primaryIdentifier asc">
+      <pathDescription pathString="Gene.goAnnotation" description="GO annotation"/>
+      <pathDescription pathString="Gene.goAnnotation.evidence.code" description="GO annotation &gt; evidence"/>
+      <constraint path="Gene" editable="true" op="LOOKUP" value="ASH1" extraValue="Candida albicans SC5314"/>
+    </query>
+  </template>
+
+  <template name="Gene_Location" title="Gene --&gt; Chromosomal location." comment="">
+    <query name="Gene_Location" model="genomic" view="Gene.primaryIdentifier Gene.secondaryIdentifier Gene.symbol Gene.name Gene.chromosome.primaryIdentifier Gene.locations.start Gene.locations.end Gene.locations.strand" longDescription="Show the chromosome and the chromosome location of a particular gene." sortOrder="Gene.primaryIdentifier asc">
+      <constraint path="Gene.locations.locatedOn" editable="false" type="Chromosome"/>
+      <constraint path="Gene" editable="true" description="Show the chromosome and the chromosome location for gene:" op="LOOKUP" value="PPARG" extraValue=""/>
+    </query>
+  </template>
+
+
+
+
+  <template name="ChromRegion_GenesTransExon" title="Chromosomal Location --&gt; All Genes + Transcripts + Exons" comment="Added 26OCT2010: ML">
+    <query name="ChromRegion_GenesTransExon" model="genomic" view="Chromosome.primaryIdentifier Chromosome.locatedFeatures.start Chromosome.locatedFeatures.feature.primaryIdentifier Chromosome.locatedFeatures.feature.gene.primaryIdentifier Chromosome.locatedFeatures.feature.gene.symbol Chromosome.locatedFeatures.feature.gene.transcripts.primaryIdentifier Chromosome.organism.name" longDescription="For a specified organism and chromosomal location show all genes, transcripts and exons" sortOrder="Chromosome.primaryIdentifier asc Chromosome.primaryIdentifier asc" constraintLogic="A and B and C and D">
+      <constraint path="Chromosome.locatedFeatures.feature" editable="false" type="Exon"/>
+      <constraint path="Chromosome.organism.name" code="D" editable="true" op="=" value="Candida albicans SC5314"/>
+      <constraint path="Chromosome.primaryIdentifier" code="A" editable="true" op="=" value="21"/>
+      <constraint path="Chromosome.locatedFeatures.start" code="C" editable="true" op="&gt;=" value="90000"/>
+      <constraint path="Chromosome.locatedFeatures.end" code="B" editable="true" op="&lt;=" value="120000"/>
+    </query>
+  </template>
+
+
+  <template name="ChromRegion_Genes" title="Region --&gt; Genes" comment="Added 26OCT2010: ML">
+    <query name="ChromRegion_Genes" model="genomic" view="Chromosome.primaryIdentifier Chromosome.locatedFeatures.feature.primaryIdentifier Chromosome.locatedFeatures.feature.symbol Chromosome.locatedFeatures.feature.chromosomeLocation.start Chromosome.locatedFeatures.feature.chromosomeLocation.end Chromosome.locatedFeatures.feature.chromosomeLocation.strand" longDescription="Show the genes located between two points on a chromosome. [Keywords: span, region, co-ordinates]" sortOrder="Chromosome.primaryIdentifier asc" constraintLogic="A and B and C and E">
+      <constraint path="Chromosome.locatedFeatures.feature" editable="false" type="Gene"/>
+      <constraint path="Chromosome.locatedFeatures.feature.organism.name" code="E" editable="true" op="=" value="Candida albicans SC5314"/>
+      <constraint path="Chromosome.primaryIdentifier" code="A" editable="true" op="=" value="11"/>
+      <constraint path="Chromosome.locatedFeatures.feature.chromosomeLocation.start" code="C" editable="true" op="&gt;=" value="172000"/>
+      <constraint path="Chromosome.locatedFeatures.feature.chromosomeLocation.end" code="B" editable="true" op="&lt;=" value="175000"/>
+    </query>
+  </template>
+
+
+  <template name="Gene_particularGoannotation" title="Gene + GO term --&gt; Genes by GO term" comment="Added 1NOV2010: ML">
+    <query name="Gene_particularGoannotation" model="genomic" view="Gene.secondaryIdentifier Gene.symbol Gene.goAnnotation.ontologyTerm.identifier Gene.goAnnotation.ontologyTerm.name" longDescription="For a Gene (or List of Genes) with GO Annotation, returns a subset of genes with that particular GO anotation. Used to filter lasrge Gene sets by GO term." sortOrder="Gene.secondaryIdentifier asc" constraintLogic="A and B">
+      <join path="Gene.goAnnotation" style="OUTER"/>
+      <constraint path="Gene" code="A" editable="true" description="For the gene(s):" op="LOOKUP" value="ASH1" extraValue="Candida albicans SC5314"/>
+      <constraint path="Gene.goAnnotation.ontologyTerm.name" code="B" editable="true" description="GO Term" op="=" value="*transcription factor*"/>
+    </query>
+  </template>
+
+
+  <template name="Gene_OverlapppingGenes" title="Gene --&gt; Overlapping genes." comment="Added 26OCT2010 - ML">
+    <query name="Gene_OverlapppingGenes" model="genomic" view="Gene.primaryIdentifier Gene.symbol Gene.chromosome.primaryIdentifier Gene.chromosomeLocation.start Gene.chromosomeLocation.end Gene.chromosomeLocation.strand Gene.overlappingFeatures.primaryIdentifier Gene.overlappingFeatures.symbol Gene.overlappingFeatures.chromosomeLocation.start Gene.overlappingFeatures.chromosomeLocation.end Gene.overlappingFeatures.chromosomeLocation.strand" longDescription="For a particular gene, search for overlapping genes." sortOrder="Gene.primaryIdentifier asc">
+      <join path="Gene.overlappingFeatures" style="OUTER"/>
+      <pathDescription pathString="Gene.chromosomeLocation" description="Gene &gt; chromosome location"/>
+      <pathDescription pathString="Gene.overlappingFeatures" description="Overlapping gene"/>
+      <pathDescription pathString="Gene.overlappingFeatures.chromosomeLocation" description="Overlapping feature &gt; chromosome gene"/>
+      <constraint path="Gene.overlappingFeatures" editable="false" type="Gene"/>
+      <constraint path="Gene" editable="true" description="Search for any genes overlapping gene:" op="LOOKUP" value="ASH1" extraValue=""/>
+    </query>
+  </template>
+
+
+
+  <template name="Gene_protein_sequence" title="Gene -&gt; Protein + protein sequence" comment="">
+    <query name="Gene_protein_sequence" model="genomic" view="Gene.primaryIdentifier Gene.symbol Gene.proteins.primaryAccession Gene.proteins.primaryIdentifier Gene.proteins.sequence.residues" longDescription="For a given gene or gene list, return the protein and protein sequence.  Default settings will return only the canonical sequence from Swissprot.  Select false to return all isoform sequences.  Turn off Data Set filter to return proteins from both Swissprot and Trembl." sortOrder="Gene.primaryIdentifier asc" constraintLogic="A and B and C and D">
+      <constraint path="Gene.organism.name" code="D" editable="false" description="" switchable="on" op="=" value="Candida albicans SC5314"/>
+      <constraint path="Gene" code="A" editable="true" op="LOOKUP" value="ASH1" extraValue=""/>
+      <constraint path="Gene.proteins.isUniprotCanonical" code="B" editable="true" description="" switchable="on" op="=" value="true"/>
+      <constraint path="Gene.proteins.dataSets.name" code="C" editable="true" description="" switchable="on" op="=" value="Swiss-Prot data set"/>
+    </query>
+  </template>
+
+
+  <template name="Gene_Protein" title="Gene --&gt; Proteins." comment="Added 26OCT2010: ML">
+    <query name="Gene_Protein" model="genomic" view="Gene.primaryIdentifier Gene.symbol Gene.proteins.primaryIdentifier Gene.proteins.primaryAccession Gene.proteins.name Gene.proteins.isUniprotCanonical Gene.proteins.molecularWeight Gene.proteins.length Gene.proteins.isFragment" longDescription="For a given Gene (or List of Genes) returns the corresponding Protein(s) products." sortOrder="Gene.primaryIdentifier asc">
+      <pathDescription pathString="Gene.proteins" description="Protein"/>
+      <constraint path="Gene" editable="true" description="" op="LOOKUP" value="ASH1" extraValue="Candida albicans SC5314"/>
+    </query>
+  </template>
+
+
+
+  <template name="INDELS_CDS" title="Insertions/Deletions in CDS region" comment="">
+    <query name="INDELS_CDS" model="genomic" view="SequenceAlteration.variants.primaryIdentifier SequenceAlteration.primaryIdentifier SequenceAlteration.overlappingFeatures.gene.secondaryIdentifier SequenceAlteration.overlappingFeatures.primaryIdentifier SequenceAlteration.consequences.annotations.name SequenceAlteration.consequences.putativeImpact SequenceAlteration.variationSource.publications.pubMedId SequenceAlteration.organism.name" longDescription="" sortOrder="SequenceAlteration.primaryIdentifier asc" constraintLogic="A and B and C and D and E">
+      <join path="SequenceAlteration.consequences" style="OUTER"/>
+      <pathDescription pathString="SequenceAlteration.variationSource.publications" description="PMID"/>
+      <pathDescription pathString="SequenceAlteration.variants" description="Strain"/>
+      <pathDescription pathString="SequenceAlteration.organism" description="Organism"/>
+      <pathDescription pathString="SequenceAlteration.overlappingFeatures" description="Exon"/>
+      <pathDescription pathString="SequenceAlteration.overlappingFeatures.gene" description="Gene"/>
+      <pathDescription pathString="SequenceAlteration.consequences.annotations" description="Consequences Type"/>
+      <pathDescription pathString="SequenceAlteration.consequences" description="Putative Imapct"/>
+      <constraint path="SequenceAlteration.overlappingFeatures" editable="false" type="Exon"/>
+      <constraint path="SequenceAlteration.type" code="A" editable="false" description="" op="ONE OF">
+        <value>Deletion
+        </value>
+        <value>Insertion
+        </value>
+      </constraint>
+      <constraint path="SequenceAlteration.organism.name" code="D" editable="true" op="=" value="[Candida] glabrata CBS 138"/>
+      <constraint path="SequenceAlteration.overlappingFeatures.gene.secondaryIdentifier" code="E" editable="true" description="Gene ID" op="=" value="CAGL0E05324g"/>
+      <constraint path="SequenceAlteration.variants.primaryIdentifier" code="B" editable="true" description="Strain Name" switchable="off" op="ONE OF">
+        <value>ATCC90030</value>
+      </constraint>
+      <constraint path="SequenceAlteration.variationSource.publications.pubMedId" code="C" editable="true" description="Study  PMID" switchable="off" op="=" value="29249661"/>
+    </query>
+  </template>
+
+
+
 </template-queries>
 <tags>
+
+  <tag name="im:aspect:Expression" objectIdentifier="Gene_Expression" type="template">
+  </tag>
+  <tag name="im:frontpage" objectIdentifier="Gene_Expression" type="template">
+  </tag>
+
+  <tag name="im:public" objectIdentifier="Gene_Expression" type="template">
+  </tag>
   <tag name="im:public" objectIdentifier="Gene_Protein" type="template">
   </tag>
   <tag name="im:public" objectIdentifier="Organism_Protein" type="template">
