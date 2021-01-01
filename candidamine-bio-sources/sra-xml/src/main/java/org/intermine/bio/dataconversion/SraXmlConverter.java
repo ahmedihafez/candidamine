@@ -474,9 +474,14 @@ public class SraXmlConverter extends BioFileConverter
                             String studyAbstract = getInnerText(childInnerNode);
                             // System.err.println("STUDY_ABSTRACT: " + studyAbstract);
                             if(studyAbstract != null && !studyAbstract.trim().equals("")) {
-                                Item description = createItem("Description");
-                                description.setAttribute("description",studyAbstract);
-                                store(description);
+                                Item description = null;
+                                if(!sraObjects.containsKey(studyAbstract)) {
+                                    description = createItem("Description");
+                                    description.setAttribute("description",studyAbstract);
+                                    store(description);
+                                    sraObjects.put(studyAbstract,description);
+                                }
+                                description = sraObjects.get(studyAbstract);
                                 studyItem.setReference("abstractText", description);
                             }
 
