@@ -13,7 +13,7 @@ package org.intermine.bio.dataconversion;
 public class CgdVcfConverterTest extends ItemsTestCase
 {
     Model model = Model.getInstanceByName("genomic");
-    CgdVcfConverter converter;
+    CgdVcfConverterFile converter;
     MockItemWriter itemWriter;
 
     public CgdVcfConverterTest(String arg) {
