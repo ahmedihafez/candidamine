@@ -32,7 +32,7 @@
     <large-image></large-image>
     <intro-text>
     </intro-text>
-    <tile-name></tile-name>
+    <tile-name>model/expression.jsp</tile-name>
   </aspect>
 
   <aspect name="Interactions">
