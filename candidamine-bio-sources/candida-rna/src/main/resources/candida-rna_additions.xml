@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- This file details any extensions needed to the data model to store data from this source, everything else is automatically generated from the model description so this is all we need to do to add to the model. -->
+
+<classes>
+<!-- add any <class> elements here -->
+    <class name="Gene" is-interface="true">
+        <collection name="rnaseqResult" referenced-type="RNASeqResult" reverse-reference="gene" />
+    </class>
+    <class name="RNASeqResult" is-interface="true">
+        <reference name="rnaseqResultSet" referenced-type="RNASeqResultSet" reverse-reference="rnaseqResult"/>
+        <attribute name="effectiveLength" type="java.lang.Float"/>
+        <attribute name="tpm" type="java.lang.Float"/>
+        <attribute name="numReads" type="java.lang.Float"/>
+        <reference name="gene" referenced-type="Gene" reverse-reference="rnaseqResult"/>
+    </class>
+
+    <class name="RNASeqResultSet" is-interface="true">
+        <reference name="sraRun" referenced-type="SRARun" reverse-reference="rnaseqResults"/>
+        <reference name="rnaseqResult" referenced-type="RNASeqResult" reverse-reference="rnaseqResultSet"/>
+        <attribute name="mappingRate" type="java.lang.Float"/>
+        <attribute name="strandedness" type="java.lang.String"/>
+        <attribute name="note" type="java.lang.String"/>
+    </class>
+
+    <class name="SRARun"  is-interface="true">
+        <collection name="rnaseqResults" referenced-type="RNASeqResultSet" reverse-reference="sraRun" />
+    </class>
+</classes>
