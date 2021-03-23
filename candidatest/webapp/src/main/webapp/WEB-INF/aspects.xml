@@ -1,0 +1,47 @@
+<aspects>
+  <aspect name="Genomics">
+    <subtitle>Genome annotation</subtitle>
+    <icon-image>model/images/genomics.gif</icon-image>
+    <large-image>model/images/genomics.gif</large-image>
+    <intro-text>
+    </intro-text>
+    <tile-name>model/genomics.jsp</tile-name>
+    <aspect-source name="GeneDB" url="http://www.genedb.org"/>
+  </aspect>
+  <aspect name="Proteins">
+    <subtitle>Protein and proteomics&lt;br/&gt;data</subtitle>
+    <icon-image>model/images/proteins.png</icon-image>
+    <large-image>model/images/proteins.png</large-image>
+    <intro-text>
+      Protein annotation (including family and domain annotation) from UniProt.
+    </intro-text>
+    <tile-name>model/proteins.jsp</tile-name>
+    <aspect-source name="UniProt" url="http://www.uniprot.org"/>
+  </aspect>
+  <aspect name="Homology">
+    <subtitle></subtitle>
+    <icon-image></icon-image>
+    <large-image></large-image>
+    <intro-text>
+    </intro-text>
+    <tile-name></tile-name>
+  </aspect>
+
+  <aspect name="Interactions">
+    <subtitle></subtitle>
+    <icon-image></icon-image>
+    <large-image></large-image>
+    <intro-text>
+    </intro-text>
+    <tile-name></tile-name>
+  </aspect>
+
+  <aspect name="Expression">
+    <subtitle></subtitle>
+    <icon-image></icon-image>
+    <large-image></large-image>
+    <intro-text>
+    </intro-text>
+    <tile-name></tile-name>
+  </aspect>
+</aspects>

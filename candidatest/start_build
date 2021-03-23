@@ -1,0 +1,21 @@
+
+## TO Build
+```
+# Clean and re-build database
+./gradlew clean && ./gradlew buildDB
+
+#  build all project
+./project_build -b -v localhost ~/canidatest-dump
+# then re-deploy
+./gradlew cargoReDeployRemote
+```
+
+
+
+
+
+
+```
+## build one source
+./gradlew integrate -Psource=candida-albicans-gff --stacktrace
+```

@@ -1,0 +1,101 @@
+
+<project type="bio">
+    <property name="target.model" value="genomic"/>
+    <property name="common.os.prefix" value="common"/>
+    <property name="intermine.properties.file" value="candidatest.properties"/>
+    <property name="default.intermine.properties.file" location="../default.intermine.integrate.properties"/>
+
+    <sources>
+        <source name="so" type="so">
+            <property name="src.data.file" location="/data/candidamine/data/candida/so/so.obo" />
+            <property name="licence" value="https://creativecommons.org/licenses/by/4.0/"/>
+        </source>
+
+        <source name="apo" type="apo">
+            <property name="src.data.file" location="/data/candidamine/data/candida/apo/apo.obo" />
+        </source>
+
+
+
+
+
+        <source name="candida-glabrata-gff" type="candida-gff">
+            <property name="gff3.taxonId" value="284593"/>
+            <property name="gff3.seqDataSourceName" value="CGD"/>
+            <property name="gff3.dataSourceName" value="CGD"/>
+            <property name="gff3.seqClsName" value="Chromosome"/>
+            <property name="gff3.dataSetTitle" value="Candida Genome Database"/>
+            <property name="src.data.dir" location="/data/candidamine/data/candida/genome/glabrata_284593/gff"/>
+            <property name="gff3.licence" value="https://creativecommons.org/licenses/by-sa/3.0/" />
+        </source>
+
+        <source name="candida-glabrata-chromosome-fasta" type="fasta" dump="true">
+            <property name="fasta.className" value="org.intermine.model.bio.Chromosome"/>
+            <property name="fasta.dataSourceName" value="CGD"/>
+            <property name="fasta.dataSetTitle" value="Candida Genome Database"/>
+            <property name="fasta.taxonId" value="284593"/>
+            <property name="fasta.includes" value="*.fasta"/>
+            <property name="src.data.dir" location="/data/candidamine/data/candida/genome/glabrata_284593/fasta"/>
+        </source>
+
+
+
+
+
+
+
+        <source name="cgd-cgal-ids" type="cgd-identifiers">
+            <property name="src.data.dir" location="/data/candidamine//data/candida/cgd-ids/glabrata"/>
+            <property name="taxonId" value="284593"/>
+        </source>
+
+        <source name="cgd-cgal-vcf" type="cgd-vcf">
+            <property name="src.data.dir" location="/data/candidamine/data/candida/variation/29249661"/>
+            <property name="taxonId" value="284593"/>
+            <property name="pubmedIds" value="29249661"/>
+            <property name="dataSet" value="Variants Collection"/>
+            <property name="dataSetDesc" value="Variants dataset"/>
+            <property name="dataSource" value="CandidaMine"/>
+            <!--
+                        <property name="refStrainTaxonId" value="284593"/>
+            -->
+            <!--            <property name="refStrainName" value="284593"/>
+                        <property name="refStrainBaseName" value="Candida glabrata"/>-->
+        </source>
+
+
+
+
+
+
+        <source name="update-publications" type="update-publications">
+            <property name="src.data.file" location="publications.xml"/>
+        </source>
+        <source name="entrez-organism" type="entrez-organism">
+            <property name="src.data.file" location="organisms.xml"/>
+        </source>
+    </sources>
+
+    <post-processing>
+        <post-process name="populate-located-features"/>
+        <post-process name="create-references" />            <!-- <post-process name="create-references"/>-->
+
+        <post-process name="make-spanning-locations"/>
+        <post-process name="create-chromosome-locations-and-lengths"/>
+        <post-process name="create-intergenic-region-features"/>
+        <post-process name="transfer-sequences"  dump="true" />         <!--  <post-process name="transfer-sequences" dump="true"/>-->
+
+        <post-process name="populate-child-features"/>
+
+        <!-- this runs the postprocessing steps in all sources -->
+        <post-process name="do-sources" />
+        <post-process name="create-location-overlap-index"/>
+        <post-process name="create-overlap-view" />
+        <post-process name="create-attribute-indexes"/>
+        <post-process name="summarise-objectstore"/>              <!-- <post-process name="summarise-objectstore"/>-->
+
+        <post-process name="create-autocomplete-index"/>
+        <post-process name="create-search-index"/>
+    </post-processing>
+
+</project>
